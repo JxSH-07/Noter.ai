@@ -1,0 +1,409 @@
+/* History.css */
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
+.history-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: var(--font-family);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.left-section h1 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-bar {
+  position: relative;
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.75rem 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary-color);
+}
+
+.mic-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.transcribe-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary-color);
+  color: black;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.transcribe-btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.files-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--background-primary);
+}
+
+tr.selected {
+  background-color: rgba(94, 23, 235, 0.05);
+}
+
+tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-badge.green {
+  background-color: rgba(39, 174, 96, 0.1);
+  color: #27ae60;
+}
+
+.status-badge.orange {
+  background-color: rgba(242, 153, 74, 0.1);
+  color: #f2994a;
+}
+
+.status-badge.gray {
+  background-color: rgba(130, 130, 130, 0.1);
+  color: #828282;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: black;
+}
+
+.notes-button {
+  background-color: #6c63ff;
+  color: white;
+}
+
+.notes-button:hover {
+  background-color: #5a52cc;
+}
+
+.generate-button {
+  background-color: #27ae60;
+  color: black !important;
+}
+
+.generate-button:hover {
+  background-color: #219653;
+  color: white !important;
+}
+
+.transcript-button {
+  background-color: #f2994a;
+  color: white;
+}
+
+.transcript-button:hover {
+  background-color: #e67e22;
+}
+
+.more-options-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.more-options-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-container {
+  position: relative;
+  z-index: 10;
+}
+
+.dropdown-menu {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  overflow: hidden;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: black;
+}
+
+.dropdown-menu button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: white;
+}
+
+.dropdown-menu .delete-btn {
+  color: #e74c3c;
+}
+
+.dropdown-menu .delete-btn:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.note-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.note-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Fullscreen override */
+.note-modal.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  padding: 1rem;
+}
+
+
+.note-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.note-modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.note-modal-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(80vh - 70px);
+}
+
+.note-modal-content pre {
+  white-space: pre-wrap;
+  font-family: var(--font-family);
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .right-section {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .transcribe-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .note-modal {
+    width: 95%;
+  }
+}
+
+.fullscreen {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: white;
+  z-index: 9999;
+  /* padding: 1rem; */
+  overflow: auto;
+}
+
+.fullscreen .note-modal-content {
+  max-height: none;
+  height: 100%;
+}
+
+.fullscreen-btn {
+  background-color: #6c63ff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.fullscreen-btn:hover {
+  background-color: #5a52d6;
+}
+
+
+.handwritten-wrapper {
+  background-image: url('https://raw.githubusercontent.com/itzmestar/noter-static/main/notebook-lines-light.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 1.15rem;
+  white-space: pre-wrap;
+  line-height: 1.9;
+  margin-bottom: 1rem;
+  max-height: none;
+  overflow-y: visible;
+  border: 1px solid #eaeaea;
+}
+
+
+.handwritten-text {
+  text-align: left;
+}
+
+.download-btn {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Montserrat", sans-serif;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.download-btn:hover {
+  background-color: #4e4cbf;
+}

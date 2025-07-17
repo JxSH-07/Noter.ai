@@ -1,0 +1,42 @@
+:root {
+  --bg-color: white;
+  --text-color: #1a1a1a;
+  --accent-color: #5eb17;
+}
+.theme-dark {
+  --bg-color: #1e1e1e;
+  --text-color: white;
+}
+body, html, .theme-light, .theme-dark {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+/* App.css or index.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #1e1e1e;
+  --primary-color: #5e17eb;
+}
+
+.dark-theme {
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+  --primary-color: #5e17eb;
+}
+
+main {
+  padding-top: 70px; /* Height of the fixed navbar */
+  min-height: 100vh;
+}
