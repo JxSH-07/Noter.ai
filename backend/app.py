@@ -29,7 +29,9 @@ CORS(app)
 # Supabase credentials
 SUPABASE_URL = "https://gkklfyvmhxulxdwjmjxz.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdra2xmeXZtaHh1bHhkd2ptanh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzNDUwNDUsImV4cCI6MjA1OTkyMTA0NX0.bBJGZ1ORgqO0iAIzA4aoJPn9LDgYQ1BdfMj6vO4XaZA"
-
+@app.route('/')
+def index():
+    return 'Noter-AI backend is live! 🚀'
 # OpenAI client
 # Use the API key directly since we're having issues with environment variables
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
