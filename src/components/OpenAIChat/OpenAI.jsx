@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-
-const supabaseUrl = 'https://gkklfyvmhxulxdwjmjxz.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdra2xmeXZtaHh1bHhkd2ptanh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzNDUwNDUsImV4cCI6MjA1OTkyMTA0NX0.bBJGZ1ORgqO0iAIzA4aoJPn9LDgYQ1BdfMj6vO4XaZA';
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../supabaseClient';
 
 // Get OpenAI API key from environment variables
-const OPENAI_API_KEY =import.meta.env.VITE_OPENAI_API_KEY;
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 
 const OpenAI = () => {
@@ -34,7 +30,7 @@ const OpenAI = () => {
       }
 
       setLoading(true);
-      
+
       // Download the transcription file
       const { data, error } = await supabase
         .storage
@@ -50,7 +46,7 @@ const OpenAI = () => {
 
       const text = await data.text();
       setTranscriptionText(text);
-      
+
       // Automatically generate notes when transcription is loaded
       await generateNotes(text);
     } catch (err) {
@@ -127,13 +123,13 @@ Now, generate clean, structured, student-friendly notes in Markdown format and d
 
       const data = await res.json();
       const generatedNotes = data?.choices?.[0]?.message?.content;
-      
+
       if (!generatedNotes) {
         throw new Error('No notes generated from OpenAI');
       }
-      
+
       setResponse(generatedNotes);
-      
+
       // Save the notes to Supabase
       if (filename) {
         const notesFilename = filename.replace('.txt', '_notes.txt');
@@ -150,16 +146,16 @@ Now, generate clean, structured, student-friendly notes in Markdown format and d
   const saveNotesToSupabase = async (notesFilename, notesContent) => {
     try {
       if (!user) return;
-      
+
       const notesPath = `${user.id}/${notesFilename}`;
-      
+
       // Try to remove existing file if it exists
       try {
         await supabase.storage.from('notes').remove([notesPath]);
       } catch (e) {
         // Ignore errors if file doesn't exist
       }
-      
+
       // Upload the notes
       const { error } = await supabase
         .storage
@@ -172,7 +168,7 @@ Now, generate clean, structured, student-friendly notes in Markdown format and d
       if (error) {
         throw error;
       }
-      
+
       console.log('Notes saved successfully to Supabase');
     } catch (err) {
       console.error('Error saving notes to Supabase:', err);
@@ -184,13 +180,13 @@ Now, generate clean, structured, student-friendly notes in Markdown format and d
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">AI Notes Generator</h1>
-      
+
       {error && (
         <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
           {error}
         </div>
       )}
-      
+
       {/* <button
         onClick={() => generateNotes(transcriptionText)}
         disabled={loading || !transcriptionText}
@@ -198,7 +194,7 @@ Now, generate clean, structured, student-friendly notes in Markdown format and d
       >
         {loading ? 'Generating Notes...' : 'Regenerate Notes'}
       </button> */}
-      
+
       {/* <button
         onClick={() => navigate('/history')}
         className="ml-4 px-6 py-3 bg-gray-600 text-black rounded hover:bg-gray-700 transition"

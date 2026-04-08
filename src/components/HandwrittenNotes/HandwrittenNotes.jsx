@@ -1,17 +1,12 @@
 // ✅ HandwrittenNotes.jsx (Displays the note content with Markdown + images)
 import React, { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
+import { supabase } from '../../supabaseClient';
 import './HandwrittenNotes.css';
-
-const supabase = createClient(
-  'https://gkklfyvmhxulxdwjmjxz.supabase.co',
-  'YOUR_SUPABASE_ANON_KEY' // Replace with your real anon key
-);
 
 const HandwrittenNotes = () => {
   const [formattedText, setFormattedText] = useState('');

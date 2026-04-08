@@ -27,14 +27,14 @@ app = Flask(__name__)
 CORS(app)
 
 # Supabase credentials
-SUPABASE_URL = "https://gkklfyvmhxulxdwjmjxz.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdra2xmeXZtaHh1bHhkd2ptanh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzNDUwNDUsImV4cCI6MjA1OTkyMTA0NX0.bBJGZ1ORgqO0iAIzA4aoJPn9LDgYQ1BdfMj6vO4XaZA"
+SUPABASE_URL = os.environ.get('SUPABASE_URL', 'https://qdkxbuqhzmrhfxudqpdi.supabase.co')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFka3hidXFoem1yaGZ4dWRxcGRpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTU2NDEzNiwiZXhwIjoyMDkxMTQwMTM2fQ.R7DKt0a98pg1E5cldENcRNvxBR4ISpSgT6VC8lK3cxI')
 @app.route('/')
 def index():
     return 'Noter-AI backend is live! 🚀'
 # OpenAI client
 # Use the API key directly since we're having issues with environment variables
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+OPENAI_API_KEY = os.environ.get('VITE_OPENAI_API_KEY')
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
